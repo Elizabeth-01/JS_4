@@ -1,0 +1,46 @@
+function createNewUser() {
+const firstName = prompt("Enter your first name:");
+const lastName = prompt("Enter your last name:");
+
+let userFirstName = firstName;
+let userLastName = lastName;
+
+const newUser = {
+getFirstName: function() {
+return userFirstName;
+},
+getLastName: function() {
+return userLastName;
+},
+setFirstName: function(newFirstName) {
+userFirstName = newFirstName;
+},
+setLastName: function(newLastName) {
+userLastName = newLastName;
+},
+getLogin: function() {
+return userFirstName.charAt(0).toLowerCase() + userLastName.toLowerCase();
+}
+};
+
+return newUser;
+}
+
+const user = createNewUser();
+
+if (user) {
+console.log("User login:", user.getLogin());
+
+// Example of changing first and last names
+user.setFirstName("Alice");
+user.setLastName("Smith");
+console.log("Updated user login:", user.getLogin());
+console.log("Updated first name:", user.getFirstName());
+console.log("Updated last name:", user.getLastName());
+
+// Attempting direct access to properties (shouldn't work directly)
+// user.firstName = "New Name";
+// console.log("Attempted direct access to firstName:", user.firstName); // Will still be the old value
+} else {
+console.log("User creation cancelled.");
+}

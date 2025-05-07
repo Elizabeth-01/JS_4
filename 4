@@ -1,0 +1,54 @@
+function createNewUser() {
+  const firstName = prompt("Введіть ім'я:");
+  const lastName = prompt("Введіть прізвище:");
+
+  const newUser = {
+    // Приватні властивості (доступні тільки всередині об'єкта)
+    _firstName: firstName,
+    _lastName: lastName,
+
+    // Геттери для отримання значень (необов'язково для основної задачі)
+    getFirstName: function() {
+      return this._firstName;
+    },
+    getLastName: function() {
+      return this._lastName;
+    },
+
+    // Сеттери для зміни значень (для необов'язкової задачі)
+    setFirstName: function(newFirstName) {
+      this._firstName = newFirstName;
+    },
+    setLastName: function(newLastName) {
+      this._lastName = newLastName;
+    },
+
+    getLogin: function() {
+      return this._firstName.charAt(0).toLowerCase() + this._lastName.toLowerCase();
+    }
+  };
+
+  return newUser;
+}
+
+// Створення користувача
+const user = createNewUser();
+
+// Виклик функції getLogin() та виведення результату
+const login = user.getLogin();
+console.log(login);
+
+// Необов'язкове завдання: зміна властивостей через сеттери
+console.log("\n--- Необов'язкове завдання ---");
+console.log("Початкове ім'я:", user.getFirstName());
+user.setFirstName("Петро");
+console.log("Нове ім'я:", user.getFirstName());
+
+console.log("Початкове прізвище:", user.getLastName());
+user.setLastName("Сидоров");
+console.log("Нове прізвище:", user.getLastName());
+
+console.log("Новий логін після зміни:", user.getLogin());
+
+// Спроба прямого доступу до приватних властивостей (не рекомендується)
+// console.log(user._firstName); // Може працювати, але вважається поганою практикою
